@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  waha:
+    image: devlikeapro/waha:latest # Use devlikeapro/waha-plus:latest for Plus
+    container_name: waha
+    ports:
+      - "3000:3000" # Maps port 3000 on your host to 3000 in the container
+    volumes:
+      - /data/waha/.sessions:/app/.sessions # Persist session data
+    environment:
+      # Optional: Define security and configuration variables
+      - WAHA_API_KEY=yoursecretkey # Set a secure API key
+      - WAHA_LOCAL_STORE_BASE_DIR=/app/.sessions
+      # - WAHA_CLIENT_DEVICE_NAME=CoolifyWAHA
+      # - WHATSAPP_SWAGGER_USERNAME=admin
+      # - WHATSAPP_SWAGGER_PASSWORD=admin
+    restart: unless-stopped
+
